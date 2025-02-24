@@ -74,6 +74,11 @@ class Company {
         return this.employees.reduce((total, employee) => total + employee.calculateAnnualSalary(), 0);
     };
 
+    promoteToManager (employee, teamSize) { //Task 5 - Add a method promoteToManager(employee, teamSize) in the Company class.
+        const index = this.employees.indexOf(employee); //Finding employee position in employees array as index
+        this.employees[index] = new Manager(employee.name, employee.id, employee.department, employee.salary, teamSize); //Creating a Manager with the properties of employee saved at index
+    };
+
 }
 
 const company = new Company("TechCorp");
@@ -83,3 +88,7 @@ company.listEmployees();
 
 // Task 4
 console.log(company.calculateTotalPayroll()); // Logging 
+
+// Task 5
+company.promoteToManager(emp1, 3); //Test case
+company.listEmployees(); //Logging
