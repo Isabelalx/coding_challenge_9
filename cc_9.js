@@ -40,6 +40,10 @@ class Manager extends Employee{ //Creating class Mangager extending from Employe
     calculateBonus() { //Setting up calculateBonus
         return super.calculateAnnualSalary() * 0.1; //Calculating bonus 
     };
+
+    calculateAnnualSalary() { // task 4 calculateAnnualSalary
+        return super.calculateAnnualSalary() + this.calculateBonus() //Calculating annual salary
+    };
 }
 
 const mgr1 = new Manager("John Smith", 201, "IT", 8000, 5);
@@ -60,14 +64,22 @@ class Company {
 
     addEmployee(employee) { // Adding employee to the company
         this.employees.push(employee);
-    }
+    };
 
     listEmployees() { // Listing employees
         this.employees.forEach(employee => {console.log(employee.getDetails())});
-    }
+    };
+
+    calculateTotalPayroll() { // Task 4
+        return this.employees.reduce((total, employee) => total + employee.calculateAnnualSalary(), 0);
+    };
+
 }
 
 const company = new Company("TechCorp");
 company.addEmployee(emp1);
 company.addEmployee(mgr1);
 company.listEmployees();
+
+// Task 4
+console.log(company.calculateTotalPayroll()); // Logging 
